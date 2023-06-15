@@ -83,7 +83,7 @@ typedef struct s_player {
 typedef struct	s_game {
 	t_map		map;
 	t_player	player;
-	t_textures	textures;
+	t_textures	t;
 	void		*mlx_ptr;
 	void		*mlx_window;
 	int			moves;
@@ -110,5 +110,6 @@ int ft_find_path(t_game *g);
 // MLX
 int ft_init_mlx(t_game *g);
 int ft_load_assets(t_game *g);
+int ft_key_input(int key, t_game *game);
 
 #endif

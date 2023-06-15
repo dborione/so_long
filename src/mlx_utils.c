@@ -26,7 +26,7 @@ void ft_init_map(t_game *g)
 		while(i <= g->map.map_size_x)
 		{
 			if (g->map.map_array[j][i] == '1')
-				mlx_put_image_to_window(g->mlx_ptr, g->mlx_window, g->textures.wall_img_ptr, i * TILE_SIZE, j * TILE_SIZE);
+				mlx_put_image_to_window(g->mlx_ptr, g->mlx_window, g->t.wall_img_ptr, i * TILE_SIZE, j * TILE_SIZE);
 			i++;
 		}
 		j++;
@@ -40,7 +40,7 @@ int ft_load_assets(t_game *g)
 {
 
     g->player.relative_path = "./assets/player/player_1.xpm";
-    g->textures.wall_relative_path = "./assets/textures/walls/wall.xpm";
+    g->t.wall_relative_path = "./assets/textures/walls/wall.xpm";
 	// char	*exit_relative_path = "./assets/exit/exit_tile.xpm";
 	// char	*wall_relative_path = "./assets/textures/walls/wall.xpm";
 	// char	*collectible_relative_path = "./assets/collectibles/collectible_tile.xpm";
@@ -49,7 +49,7 @@ int ft_load_assets(t_game *g)
 	int		img_height = TILE_SIZE;
 
     g->player.img_ptr = mlx_xpm_file_to_image(g->mlx_ptr, g->player.relative_path, &img_width, &img_height);
-    g->textures.wall_img_ptr = mlx_xpm_file_to_image(g->mlx_ptr, g->textures.wall_relative_path, &img_width, &img_height);
+    g->t.wall_img_ptr = mlx_xpm_file_to_image(g->mlx_ptr, g->t.wall_relative_path, &img_width, &img_height);
 	// g->exit_img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, exit_relative_path, &img_width, &img_height);
 	// g->backgnd_img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, empty_relative_path, &img_width, &img_height);
 	// g->collectible_img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, collectible_relative_path, &img_width, &img_height);
