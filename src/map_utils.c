@@ -6,13 +6,6 @@ int ft_free_and_return(t_parsing *p)
     return (0); 
 }
 
-int    ft_check_walls(t_parsing *p, int i)
-{
-    while (p->line[i] == '1')
-        i++;
-    return (i);
-}
-
 void    ft_open_fd(t_parsing *p, char *file)
 {
     p->fd = open(file, O_RDONLY);

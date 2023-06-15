@@ -7,7 +7,8 @@ int ft_first_and_last(t_parsing *p, int x)
 
     i = 0;
     p->line = get_next_line(p->fd);
-    i = ft_check_walls(p, i);
+    while (p->line[i] == '1')
+        i++;
     if (x == FIRST_LINE && p->line[i] != '\n')
         return (ft_free_and_return(p));
     if (x == LAST_LINE && p->line[i] != '\0')
@@ -49,13 +50,8 @@ int ft_middle_lines(t_parsing *p)
 
 int  ft_check_valid_map(t_parsing *p)
 {
-    if (p->player_count != 1)
-        return (0);
-    if (p->exit_count != 1)
-        return (0);
-    if (p->coll_count < 1)
-        return (0);
-    if (p->villain_count < 1)
+    if (p->player_count != 1 || p->exit_count != 1 ||
+        p->coll_count < 1 || p->villain_count < 1)
         return (0);
     return (1);
 }
