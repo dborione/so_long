@@ -21,8 +21,8 @@
 # include "../libft/includes/libft.h"
 
 // General
-# define WIN_WIDTH 500
-# define WIN_HEIGHT 500
+# define WIN_WIDTH 16
+# define WIN_HEIGHT 16
 # define MLX_FAILURE 1
 # define MLX_SUCCESS 0
 # define TILE_SIZE 64
@@ -80,6 +80,7 @@ typedef struct	s_game {
 	void		*mlx_ptr;
 	void		*mlx_window;
 	int			moves;
+	int			coll_count;
 	int			score;
 	int			map_size_x;
 	int			map_size_y;
@@ -112,5 +113,6 @@ void ft_get_positions(t_game *g);
 void	ft_check_map(t_game	*g, char *arg);
 void	ft_move(t_game *g);
 void	ft_init_game(t_game	*g);
+void ft_init_map(t_game *g);
 
 #endif

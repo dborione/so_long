@@ -83,6 +83,7 @@ int ft_parse_map(t_game *g, char *file)
         return (0);
     close(p.fd);
     g->map_size_x = p.line_len;
+    g->coll_count = p.coll_count;
     return (ft_build_map_array(&p, g, file));
 }
 

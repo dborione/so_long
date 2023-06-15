@@ -10,7 +10,10 @@ void    ft_open_fd(t_parsing *p, char *file)
 {
     p->fd = open(file, O_RDONLY);
     if (!p->fd)
+    {
+        printf("fdsfdsfd");
         exit (3);
+    }
 }
 
 void    ft_init_parsing(t_parsing *p)
