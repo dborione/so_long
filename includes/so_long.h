@@ -87,4 +87,6 @@ void    ft_open_fd(t_parsing *p, char *file);
 int    ft_check_walls(t_parsing *p, int i);
 int ft_free_and_return(t_parsing *p);
 
+// Pathfinding
+
 #endif

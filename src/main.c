@@ -9,7 +9,7 @@ int	main(int argc, char **argv)
   //ft_init_game(&game);
   if (!ft_parse_map(&game, argv[1]))
     return (1);
-  // ft_pathfinding;
+  ft_pathfinding;
   // ft_init_mlx;
   // ft_load_assets;
   // ft_player_anim;

@@ -25,6 +25,7 @@ int ft_first_and_last(t_parsing *p, int x)
 
 int ft_middle_lines(t_parsing *p)
 {
+    p->line = get_next_line(p->fd);
     if (ft_strlen(p->line) != p->line_len)
         return (ft_free_and_return(p));
     if (*p->line != '1'
@@ -75,7 +76,6 @@ int ft_parse_map(t_game *game, char *file)
         return (0);
     while (i > 2)
     {
-        p.line = get_next_line(p.fd);
         if (!ft_middle_lines(&p))
             return (0);
         //free(p.line);
@@ -85,5 +85,6 @@ int ft_parse_map(t_game *game, char *file)
         return (0);
     if (!ft_check_valid_map(&p))
         return (0);
+    game->map.map_size_x = p.line_len - 1;
     return (1);
 }
