@@ -13,7 +13,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <mlx.h>
+//# include <mlx.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -48,6 +48,15 @@
 # define V_X game->map.villain_pos_x
 # define V_Y game->map.villain_pos_y
 
+typedef struct s_parsing {
+	char	*line;
+	int	player_count;
+	int	exit_count;
+	int	coll_count;
+	int	villain_count;
+	int	fd;
+	size_t line_len;
+}  t_parsing;
 
 typedef	struct s_map {
 	int	map_size_x;
@@ -61,4 +70,9 @@ typedef struct	s_game {
 	int		moves;
 	int		score;
 	int		player_life;
-} t_game
+} t_game;
+
+void	ft_init_game(t_game *game);
+int		ft_parse_map(t_game *game, char *file);
+
+#endif
