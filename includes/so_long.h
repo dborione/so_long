@@ -13,7 +13,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-//# include <mlx.h>
+# include <mlx.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -67,15 +67,23 @@ typedef	struct s_map {
     char **map_array;
 } t_map;
 
+typedef struct s_textures {
+	char	*wall_relative_path;
+	void	*wall_img_ptr;
+}	t_textures;
+
 typedef struct s_player {
 	int		pos_x;
 	int		pos_y;
 	int		player_life;
+	char	*relative_path;
+	void	*img_ptr;
 } t_player;
 
 typedef struct	s_game {
 	t_map		map;
 	t_player	player;
+	t_textures	textures;
 	void		*mlx_ptr;
 	void		*mlx_window;
 	int			moves;
@@ -94,7 +102,13 @@ void    ft_open_fd(t_parsing *p, char *file);
 int    ft_check_walls(t_parsing *p, int i);
 int ft_free_and_return(t_parsing *p);
 int    ft_build_map_array(t_parsing *p, t_game *g, char *file);
+
 // Pathfinding
 int ft_find_path(t_game *g);
         // printf("%s", g->map.map_array[i]);
+
+// MLX
+int ft_init_mlx(t_game *g);
+int ft_load_assets(t_game *g);
+
 #endif

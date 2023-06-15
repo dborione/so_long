@@ -10,10 +10,10 @@ int	main(int argc, char **argv)
   if (!ft_parse_map(&g, argv[1]))
     return (1);
   ft_find_path(&g);
-  // ft_init_mlx;
-  // ft_load_assets;
+  ft_init_mlx(&g);
+  ft_load_assets(&g);
   // ft_player_anim;
   // ft_keys_input;
-  // mlx_loop(game.mlx_ptr);
+  mlx_loop(g.mlx_ptr);
   exit(0);
 }

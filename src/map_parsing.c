@@ -82,6 +82,6 @@ int ft_parse_map(t_game *g, char *file)
     if (!ft_check_valid_map(&p))
         return (0);
     close(p.fd);
-    g->map.map_size_x = p.line_len - 1;
+    g->map.map_size_x = p.line_len;
     return (ft_build_map_array(&p, g, file));
 }
