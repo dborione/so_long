@@ -28,6 +28,8 @@
 # define FALSE 0
 # define TRUE !(FALSE)
 # define FRAME_SPEED 30
+# define FIRST_LINE 0
+# define LAST_LINE 1
 
 // Keys
 # define ESC_KEY 53
@@ -50,11 +52,11 @@
 
 typedef struct s_parsing {
 	char	*line;
-	int	player_count;
-	int	exit_count;
-	int	coll_count;
-	int	villain_count;
-	int	fd;
+	int		player_count;
+	int		exit_count;
+	int		coll_count;
+	int		villain_count;
+	int		fd;
 	size_t line_len;
 }  t_parsing;
 
@@ -65,6 +67,7 @@ typedef	struct s_map {
 } t_map;
 
 typedef struct	s_game {
+	t_map	map;
 	void	*mlx_ptr;
 	void	*mlx_window;
 	int		moves;
@@ -72,7 +75,16 @@ typedef struct	s_game {
 	int		player_life;
 } t_game;
 
+// init
 void	ft_init_game(t_game *game);
+
+// Parsing
+int 	ft_first_and_last(t_parsing *p, int x);
 int		ft_parse_map(t_game *game, char *file);
+int    ft_count_lines(t_parsing *p, char *file);
+void    ft_init_parsing(t_parsing *p);
+void    ft_open_fd(t_parsing *p, char *file);
+int    ft_check_walls(t_parsing *p, int i);
+int ft_free_and_return(t_parsing *p);
 
 #endif

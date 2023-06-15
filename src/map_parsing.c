@@ -48,70 +48,52 @@ int ft_middle_lines(t_parsing *p)
     return (1);
 }
 
-int ft_first_line(t_parsing *p)
+int ft_first_and_last(t_parsing *p, int x)
 {
     int i;
+    size_t last_line_len;
 
-    i = -1;
+    i = 0;
     p->line = get_next_line(p->fd);
-    while (p->line[++i])
+    i = ft_check_walls(p, i);
+    if (x == FIRST_LINE && p->line[i] != '\n')
+        return (ft_free_and_return(p));
+    if (x == LAST_LINE && p->line[i] != '\0')
+        return (ft_free_and_return(p));
+    if (x == LAST_LINE)
     {
-        if (p->line[i] != '1')
-            break ;
-    }
-    if (p->line[i] != '\n')
-    {
-        free(p->line);
-        return (0);    
+        last_line_len = ft_strlen(p->line);
+        if (last_line_len != p->line_len - 1)
+            return (ft_free_and_return(p));
     }
     p->line_len = ft_strlen(p->line);
     return (1);
 }
 
-int ft_last_line(t_parsing *p)
-{
-    // if (ft_strlen(p->line) != p->line_len)
-    //     return (0);
-    // while (*p->line)
-    // {
-    //     if (*p->line != '1')
-    //     {
-    //         free(p->line);
-    //         return (0);
-    //     }
-    //     p->line++;
-    // }
-    // free(p->line);
-    return (1);
-}
-
 int ft_parse_map(t_game *game, char *file)
 {
-    t_parsing p;
+    t_parsing   p;
+    int         i;
 
-
-    // p.coll_count = 0;
-    // p.exit_count = 0;
-    // p.line = NULL;
-    // p.line_len = 0;
-    // p.player_count = 0;
-    // p.villain_count = 0;
-
-    p.fd = open(file, O_RDONLY);
-    if (!p.fd)
-        exit (3);
-    if (!ft_first_line(&p))
+    ft_init_parsing(&p);
+    i = ft_count_lines(&p, file);
+    if (i < 3)
         return (0);
-    while (p.line)
+    game->map.map_size_y = i;
+    ft_open_fd(&p, file);
+    if (!ft_first_and_last(&p, FIRST_LINE))
+        return (0);
+    while (i > 2)
     {
         free(p.line);
         p.line = get_next_line(p.fd);
-        printf("%zu\n", ft_strlen(p.line));  
-        if (!ft_middle_lines(&p))
-            return (0);
+        //printf("%s\n", p.line);  
+        // if (!ft_middle_lines(&p))
+        //     return (0);
+        i--;
     }
-    // if (!ft_last_line(&p))
-    //     return (0);
+    if (!ft_first_and_last(&p, LAST_LINE))
+        return (0);
    // ft_check_valid_map(game);
     return (1);
 }

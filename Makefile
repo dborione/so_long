@@ -17,6 +17,7 @@ CFLAGS = -Wall -Wextra
 #	Sources
 FILES = main.c 	\
 		map_parsing.c \
+		map_utils.c \
 		get_next_line.c	\
 		get_next_line_utils.c	\
 
