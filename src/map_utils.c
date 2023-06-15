@@ -46,3 +46,20 @@ int    ft_count_lines(t_parsing *p, char *file)
     close(p->fd);
     return (i);
 }
+
+int ft_build_map_array(t_parsing *p, t_game *g, char *file)
+{
+    int i;
+    int j;
+
+    i = -1;
+    j = g->map.map_size_y;
+    g->map.map_array = malloc((sizeof(char *) * g->map.map_size_y + 1));
+    if (!g->map.map_array)
+        return (0);
+    ft_open_fd(p, file);
+    while(i < j)
+        g->map.map_array[++i] = get_next_line(p->fd);
+    close(p->fd);
+    return (1);
+}

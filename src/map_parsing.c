@@ -61,7 +61,7 @@ int  ft_check_valid_map(t_parsing *p)
 }
 
 
-int ft_parse_map(t_game *game, char *file)
+int ft_parse_map(t_game *g, char *file)
 {
     t_parsing   p;
     int         i;
@@ -70,7 +70,7 @@ int ft_parse_map(t_game *game, char *file)
     i = ft_count_lines(&p, file);
     if (i < 3)
         return (0);
-    game->map.map_size_y = i;
+    g->map.map_size_y = i;
     ft_open_fd(&p, file);
     if (!ft_first_and_last(&p, FIRST_LINE))
         return (0);
@@ -85,6 +85,7 @@ int ft_parse_map(t_game *game, char *file)
         return (0);
     if (!ft_check_valid_map(&p))
         return (0);
-    game->map.map_size_x = p.line_len - 1;
-    return (1);
+    close(p.fd);
+    g->map.map_size_x = p.line_len - 1;
+    return (ft_build_map_array(&p, g, file));
 }

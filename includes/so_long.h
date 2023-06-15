@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "get_next_line.h"
+# include "../libft/includes/libft.h"
 
 // General
 # define WIN_WIDTH 500
@@ -66,13 +67,19 @@ typedef	struct s_map {
     char **map_array;
 } t_map;
 
-typedef struct	s_game {
-	t_map	map;
-	void	*mlx_ptr;
-	void	*mlx_window;
-	int		moves;
-	int		score;
+typedef struct s_player {
+	int		pos_x;
+	int		pos_y;
 	int		player_life;
+} t_player;
+
+typedef struct	s_game {
+	t_map		map;
+	t_player	player;
+	void		*mlx_ptr;
+	void		*mlx_window;
+	int			moves;
+	int			score;
 } t_game;
 
 // init
@@ -86,7 +93,8 @@ void    ft_init_parsing(t_parsing *p);
 void    ft_open_fd(t_parsing *p, char *file);
 int    ft_check_walls(t_parsing *p, int i);
 int ft_free_and_return(t_parsing *p);
-
+int    ft_build_map_array(t_parsing *p, t_game *g, char *file);
 // Pathfinding
-
+int ft_find_path(t_game *g);
+        // printf("%s", g->map.map_array[i]);
 #endif

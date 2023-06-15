@@ -18,6 +18,7 @@ CFLAGS = -Wall -Wextra
 FILES = main.c 	\
 		map_parsing.c \
 		map_utils.c \
+		pathfinding.c \
 		get_next_line.c	\
 		get_next_line_utils.c	\
 
