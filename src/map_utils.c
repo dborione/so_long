@@ -33,12 +33,13 @@ int    ft_count_lines(t_parsing *p, char *file)
 {
     int i;
 
-    i = -1;
+    i = 0;
     ft_open_fd(p, file);
+    p->line = get_next_line(p->fd);
     while (p->line)
     {
-        p->line = get_next_line(p->fd);
         free(p->line);
+        p->line = get_next_line(p->fd);
         i++;
     }
     free(p->line);

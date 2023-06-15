@@ -1,57 +1,9 @@
 #include "../includes/so_long.h"
 
-void    ft_gnl(char *line, int fd)
-{
-    line = get_next_line(fd);
-    free(line);
-}
-
-int  ft_check_valid_map(t_parsing *p)
-{
-    if (p->player_count != 1)
-        return (0);
-    if (p->exit_count != 1)
-        return (0);
-    if (p->coll_count < 1)
-        return (0);
-    if (p->villain_count < 1)
-        return (0);
-    return (1);
-}
-
-int ft_middle_lines(t_parsing *p)
-{
-    p->line = get_next_line(p->fd);
-    if (ft_strlen(p->line) != p->line_len
-        && ft_strlen(p->line) != 0)
-    {
-        free(p->line);
-        return (0);
-    }
-    // if (*p->line != '1'
-    //     || p->line[p->line_len - 1] != '1')
-    //     return (0);
-    // p->line++;
-    // while(*p->line)
-    // {
-    //     if (*p->line == 'P')
-    //         p->player_count++;
-    //     if (*p->line == 'C')
-    //         p->coll_count++;
-    //     if (*p->line == 'V')
-    //         p->villain_count++;
-    //     if (*p->line == 'E')
-    //         p->exit_count++;
-    //     p->line++;
-    // }
-    //free(p->line);
-    return (1);
-}
-
 int ft_first_and_last(t_parsing *p, int x)
 {
-    int i;
-    size_t last_line_len;
+    int     i;
+    size_t  last_line_len;
 
     i = 0;
     p->line = get_next_line(p->fd);
@@ -67,8 +19,46 @@ int ft_first_and_last(t_parsing *p, int x)
             return (ft_free_and_return(p));
     }
     p->line_len = ft_strlen(p->line);
+    free(p->line);
     return (1);
 }
+
+int ft_middle_lines(t_parsing *p)
+{
+    if (ft_strlen(p->line) != p->line_len)
+        return (ft_free_and_return(p));
+    if (*p->line != '1'
+        || p->line[p->line_len - 2] != '1')
+        return (ft_free_and_return(p));
+    p->line++;
+    while(*p->line)
+    {
+        if (*p->line == 'P')
+            p->player_count++;
+        if (*p->line == 'C')
+            p->coll_count++;
+        if (*p->line == 'V')
+            p->villain_count++;
+        if (*p->line == 'E')
+            p->exit_count++;
+        p->line++;
+    }
+    return (1);
+}
+
+int  ft_check_valid_map(t_parsing *p)
+{
+    if (p->player_count != 1)
+        return (0);
+    if (p->exit_count != 1)
+        return (0);
+    if (p->coll_count < 1)
+        return (0);
+    if (p->villain_count < 1)
+        return (0);
+    return (1);
+}
+
 
 int ft_parse_map(t_game *game, char *file)
 {
@@ -85,15 +75,15 @@ int ft_parse_map(t_game *game, char *file)
         return (0);
     while (i > 2)
     {
-        free(p.line);
         p.line = get_next_line(p.fd);
-        //printf("%s\n", p.line);  
-        // if (!ft_middle_lines(&p))
-        //     return (0);
+        if (!ft_middle_lines(&p))
+            return (0);
+        //free(p.line);
         i--;
     }
     if (!ft_first_and_last(&p, LAST_LINE))
         return (0);
-   // ft_check_valid_map(game);
+    if (!ft_check_valid_map(&p))
+        return (0);
     return (1);
 }
