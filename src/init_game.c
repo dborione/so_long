@@ -1,12 +1,33 @@
 #include "../includes/so_long.h"
 
+void ft_get_positions(t_game *g)
+{
+    int i;
+    int j;
+
+    i = -1;
+    j = -1;
+    while (g->map_array[++i])
+    {
+        while(g->map_array[i][++j])
+        { 
+            if (g->map_array[i][j] == 'P')
+            {
+                g->player.pos_x = j;
+                g->player.pos_y = i;
+            }
+        }
+        j = 0;
+    }
+}
+
 int ft_init_mlx(t_game *g)
 {
     g->mlx_ptr = mlx_init();
 	if (!g->mlx_ptr)
 		return (0);
-	g->mlx_window = mlx_new_window(g->mlx_ptr, (g->map.map_size_x * TILE_SIZE), 
-        (g->map.map_size_y * TILE_SIZE), "so_long");
+	g->mlx_window = mlx_new_window(g->mlx_ptr, (g->map_size_x * TILE_SIZE),
+        (g->map_size_y * TILE_SIZE), "so_long");
 	if (!g->mlx_window)
 	{
 		free(g->mlx_ptr);
@@ -17,16 +38,19 @@ int ft_init_mlx(t_game *g)
 
 void ft_init_map(t_game *g)
 {
-	int	i = 0;
-	int j = 0;
+	int	i;
+	int j;
 
+	i = 0;
+	j = 0;
 	//mlx_clear_window(game->mlx_ptr, game->mlx_window);
-	while(j < g->map.map_size_y)
+	while(j < g->map_size_y)
 	{
-		while(i <= g->map.map_size_x)
+		while(i <= g->map_size_x)
 		{
-			if (g->map.map_array[j][i] == '1')
-				mlx_put_image_to_window(g->mlx_ptr, g->mlx_window, g->t.wall_img_ptr, i * TILE_SIZE, j * TILE_SIZE);
+			if (g->map_array[j][i] == '1')
+				mlx_put_image_to_window(g->mlx_ptr, g->mlx_window, g->t.wall_img_ptr,
+					i * TILE_SIZE, j * TILE_SIZE);
 			i++;
 		}
 		j++;
@@ -56,4 +80,10 @@ int ft_load_assets(t_game *g)
 	g->player.pos_x = g->player.pos_x * TILE_SIZE;
 	g->player.pos_y = g->player.pos_y * TILE_SIZE;
     ft_init_map(g);
+}
+
+void	ft_init_game(t_game	*g)
+{
+	ft_init_mlx(g);
+  	ft_load_assets(g);
 }

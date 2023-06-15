@@ -58,14 +58,8 @@ typedef struct s_parsing {
 	int		coll_count;
 	int		villain_count;
 	int		fd;
-	size_t line_len;
+	size_t 	line_len;
 }  t_parsing;
-
-typedef	struct s_map {
-	int	map_size_x;
-	int	map_size_y;
-    char **map_array;
-} t_map;
 
 typedef struct s_textures {
 	char	*wall_relative_path;
@@ -81,13 +75,15 @@ typedef struct s_player {
 } t_player;
 
 typedef struct	s_game {
-	t_map		map;
 	t_player	player;
 	t_textures	t;
 	void		*mlx_ptr;
 	void		*mlx_window;
 	int			moves;
 	int			score;
+	int			map_size_x;
+	int			map_size_y;
+    char		**map_array;
 } t_game;
 
 // init
@@ -111,5 +107,10 @@ int ft_find_path(t_game *g);
 int ft_init_mlx(t_game *g);
 int ft_load_assets(t_game *g);
 int ft_key_input(int key, t_game *game);
+void ft_get_positions(t_game *g);
+
+void	ft_check_map(t_game	*g, char *arg);
+void	ft_move(t_game *g);
+void	ft_init_game(t_game	*g);
 
 #endif

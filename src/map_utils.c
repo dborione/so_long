@@ -19,7 +19,6 @@ void    ft_init_parsing(t_parsing *p)
     p->exit_count = 0;
     p->line_len = 0;
     p->player_count = 0;
-    p->villain_count = 0;
 }
 
 int    ft_count_lines(t_parsing *p, char *file)
@@ -46,13 +45,13 @@ int ft_build_map_array(t_parsing *p, t_game *g, char *file)
     int j;
 
     i = -1;
-    j = g->map.map_size_y;
-    g->map.map_array = malloc((sizeof(char *) * g->map.map_size_y + 1));
-    if (!g->map.map_array)
+    j = g->map_size_y;
+    g->map_array = malloc((sizeof(char *) * g->map_size_y + 1));
+    if (!g->map_array)
         return (0);
     ft_open_fd(p, file);
     while(i < j)
-        g->map.map_array[++i] = get_next_line(p->fd);
+        g->map_array[++i] = get_next_line(p->fd);
     close(p->fd);
     return (1);
 }

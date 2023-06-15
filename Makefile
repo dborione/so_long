@@ -19,7 +19,7 @@ FILES = main.c 	\
 		map_parsing.c \
 		map_utils.c \
 		pathfinding.c \
-		mlx_utils.c \
+		init_game.c \
 		movement.c \
 		get_next_line.c	\
 		get_next_line_utils.c	\

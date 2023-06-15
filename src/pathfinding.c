@@ -1,30 +1,5 @@
 #include "../includes/so_long.h"
 
-void ft_get_positions(t_game *g)
-{
-    int i;
-    int j;
-
-    i = 0;
-    j = 0;
-    
-    while (g->map.map_array[i])
-    {
-        while(g->map.map_array[i][j])
-        {
-            
-            if (g->map.map_array[i][j] == 'P')
-            {
-                g->player.pos_x = j;
-                g->player.pos_y = i;
-            }
-            j++;
-        }
-        j = 0;
-        i++;
-    }
-}
-
 int ft_pathfinding(char **map_copy, int y, int x)
 {
     static int  c_count;
@@ -57,12 +32,12 @@ int ft_find_path(t_game *g)
     char    **map_copy;
     
     i = -1;
-    map_copy = malloc((sizeof(char *) * g->map.map_size_y + 1));
+    map_copy = malloc((sizeof(char *) * g->map_size_y + 1));
     if (!map_copy)
         return (0); //and free map_array
-    while(g->map.map_array[++i])
+    while(g->map_array[++i])
     {
-        map_copy[i] = ft_strdup(g->map.map_array[i]);
+        map_copy[i] = ft_strdup(g->map_array[i]);
         if (!map_copy[i])
             return (0);
     }
