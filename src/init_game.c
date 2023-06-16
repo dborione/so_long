@@ -43,7 +43,7 @@ void ft_init_map(t_game *g)
 
 	i = 0;
 	j = 0;
-	//mlx_clear_window(game->mlx_ptr, game->mlx_window);
+	mlx_clear_window(g->mlx_ptr, g->mlx_window);
 	while(j < g->map_size_y)
 	{
 		while(i <= g->map_size_x)
@@ -57,7 +57,7 @@ void ft_init_map(t_game *g)
 		i = 0;
 	}
    	mlx_put_image_to_window(g->mlx_ptr, g->mlx_window, g->player.img_ptr,
-		g->player.pos_x * TILE_SIZE,  g->player.pos_y * TILE_SIZE);
+		g->player.pos_y * TILE_SIZE,  g->player.pos_x * TILE_SIZE);
 }
 
 
@@ -65,9 +65,8 @@ int ft_load_assets(t_game *g)
 {
 
     g->player.relative_path = "./assets/player/player_1.xpm";
-    g->t.wall_relative_path = "./assets/textures/walls/wall3.xpm";
+    g->t.wall_relative_path = "./assets/player/player_1.xpm";
 	// char	*exit_relative_path = "./assets/exit/exit_tile.xpm";
-	// char	*wall_relative_path = "./assets/textures/walls/wall.xpm";
 	// char	*collectible_relative_path = "./assets/collectibles/collectible_tile.xpm";
 	// char	*empty_relative_path = "./assets/textures/background tiles/empty_tile.xpm";
 	int		img_width = TILE_SIZE;
@@ -78,8 +77,6 @@ int ft_load_assets(t_game *g)
 	// g->exit_img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, exit_relative_path, &img_width, &img_height);
 	// g->backgnd_img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, empty_relative_path, &img_width, &img_height);
 	// g->collectible_img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, collectible_relative_path, &img_width, &img_height);
-	//g->player.pos_x = g->player.pos_x * TILE_SIZE;
-	//g->player.pos_y = g->player.pos_y * TILE_SIZE;
     ft_init_map(g);
 }
 

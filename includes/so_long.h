@@ -94,12 +94,12 @@ void	ft_init_game(t_game *game);
 // Parsing
 int 	ft_first_and_last(t_parsing *p, int x);
 int		ft_parse_map(t_game *game, char *file);
-int    ft_count_lines(t_parsing *p, char *file);
+int    	ft_count_lines(t_parsing *p, char *file);
 void    ft_init_parsing(t_parsing *p);
 void    ft_open_fd(t_parsing *p, char *file);
-int    ft_check_walls(t_parsing *p, int i);
-int ft_free_and_return(t_parsing *p);
-int    ft_build_map_array(t_parsing *p, t_game *g, char *file);
+int    	ft_check_walls(t_parsing *p, int i);
+int 	ft_free_and_return(t_parsing *p);
+int    	ft_build_map_array(t_parsing *p, t_game *g, char *file);
 
 // Pathfinding
 int ft_find_path(t_game *g);

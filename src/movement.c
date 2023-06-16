@@ -74,13 +74,13 @@
 
 int	ft_check_move(t_game *g, int pos_x, int pos_y)
 {
-	ft_putchar_fd(g->map_array[pos_y][pos_x], 1);
-	if (g->map_array[pos_y][pos_x] == '1')
+	ft_putchar_fd(g->map_array[pos_x][pos_y], 1);
+	if (g->map_array[pos_x][pos_y] == '1')
 		return (0);
-	if (g->map_array[pos_y][pos_x] == 'C')
+	if (g->map_array[pos_x][pos_y] == 'C')
 	{
 		g->coll_count--;
-		g->map_array[pos_y][pos_x] = '0';
+		g->map_array[pos_x][pos_y] = '0';
 	}
 	if (g->map_array[pos_x][pos_y] == 'E'
 		&& g->coll_count == 0)
@@ -99,13 +99,13 @@ int	ft_check_move(t_game *g, int pos_x, int pos_y)
 int ft_key_input(int key, t_game *g)
 {
 	if (key == W_KEY || key == UP_ARROW_KEY)
-        return (ft_check_move(g, g->player.pos_x, g->player.pos_y - 1));
+        return (ft_check_move(g, g->player.pos_x - 1, g->player.pos_y));
 	if (key == S_KEY || key == DOWN_ARROW_KEY)
-		return (ft_check_move(g, g->player.pos_x, g->player.pos_y + 1));
-	if (key == D_KEY || key == RIGHT_ARROW_KEY)
 		return (ft_check_move(g, g->player.pos_x + 1, g->player.pos_y));
+	if (key == D_KEY || key == RIGHT_ARROW_KEY)
+		return (ft_check_move(g, g->player.pos_x, g->player.pos_y + 1));
 	if (key == A_KEY || key == LEFT_ARROW_KEY)
-		return (ft_check_move(g, g->player.pos_x - 1, g->player.pos_y));
+		return (ft_check_move(g, g->player.pos_x, g->player.pos_y - 1));
 	if (key == ESC_KEY)
 	{
 		mlx_destroy_window(g->mlx_ptr, g->mlx_window);
