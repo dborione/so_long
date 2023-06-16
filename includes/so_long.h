@@ -64,6 +64,10 @@ typedef struct s_parsing {
 typedef struct s_textures {
 	char	*wall_relative_path;
 	void	*wall_img_ptr;
+	char	*exit_relative_path;
+	void	*exit_img_ptr;
+	char	*coll_relative_path;
+	void	*coll_img_ptr;
 }	t_textures;
 
 typedef struct s_player {
