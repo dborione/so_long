@@ -49,7 +49,7 @@ int ft_build_map_array(t_parsing *p, t_game *g, char *file)
 
     i = -1;
     j = g->map_size_y;
-    g->map_array = malloc((sizeof(char *) * g->map_size_y + 1));
+    g->map_array = malloc((sizeof(char *) * (g->map_size_y + 1)));
     if (!g->map_array)
         return (0);
     ft_open_fd(p, file);

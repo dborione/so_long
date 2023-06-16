@@ -26,23 +26,27 @@ int ft_first_and_last(t_parsing *p, int x)
 
 int ft_middle_lines(t_parsing *p)
 {
+    int i;
+
+    i = 0;
     p->line = get_next_line(p->fd);
     if (ft_strlen(p->line) != p->line_len)
         return (ft_free_and_return(p));
-    if (*p->line != '1'
+    if (p->line[i] != '1'
         || p->line[p->line_len - 2] != '1')
         return (ft_free_and_return(p));
-    p->line++;
-    while(*p->line)
+    i++;
+    while(p->line[i])
     {
-        if (*p->line == 'P')
+        if (p->line[i] == 'P')
             p->player_count++;
-        if (*p->line == 'C')
+        if (p->line[i] == 'C')
             p->coll_count++;
-        if (*p->line == 'E')
+        if (p->line[i] == 'E')
             p->exit_count++;
-        p->line++;
+        i++;
     }
+    free(p->line);
     return (1);
 }
 
@@ -72,7 +76,6 @@ int ft_parse_map(t_game *g, char *file)
     {
         if (!ft_middle_lines(&p))
             return (0);
-        //free(p.line);
         i--;
     }
     if (!ft_first_and_last(&p, LAST_LINE))
@@ -82,13 +85,14 @@ int ft_parse_map(t_game *g, char *file)
     close(p.fd);
     g->map_size_x = p.line_len;
     g->coll_count = p.coll_count;
-    return (ft_build_map_array(&p, g, file));
+   // return (ft_build_map_array(&p, g, file));
+    return (1);
 }
 
 void	ft_check_map(t_game	*g, char *arg)
 {
   	if (!ft_parse_map(g, arg))
     	exit(1);
-  	if (!ft_find_path(g))
-		exit(1);
+  	// if (!ft_find_path(g))
+	// 	exit(1);
 }

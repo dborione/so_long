@@ -28,7 +28,7 @@ int ft_find_path(t_game *g)
     char    **map_copy;
     
     i = -1;
-    map_copy = malloc((sizeof(char *) * g->map_size_y));
+    map_copy = malloc((sizeof(char *) * (g->map_size_y + 1)));
     if (!map_copy)
         return (0); //and free map_array
     while(g->map_array[++i])
@@ -44,6 +44,6 @@ int ft_find_path(t_game *g)
     if (g->path_coll_count != g->coll_count 
         || g->path_exit_count!= 1)
         return (0);
-    //ft_free_tab_sl(map_copy); segfault
+    ft_free_tab(map_copy);
     return (1);
 }

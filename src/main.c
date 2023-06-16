@@ -8,7 +8,8 @@ int	main(int argc, char **argv)
 		return (1);
 	ft_init_struct(&g);
 	ft_check_map(&g, argv[1]);
-	ft_init_game(&g);
-	ft_move(&g);
+	
+	// ft_init_game(&g);
+	// ft_move(&g);
   	exit(0);
 }

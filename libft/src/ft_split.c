@@ -34,7 +34,7 @@ static int	ft_tab_len(const char *ptr, char c)
 	return (count);
 }
 
-static char	**ft_empty_tab(char **tab)
+char	**ft_empty_tab(char **tab)
 {
 	tab = malloc(sizeof(*tab));
 	if (!tab)
@@ -43,7 +43,7 @@ static char	**ft_empty_tab(char **tab)
 	return (tab);
 }
 
-static char	**ft_free_tab(char **tab)
+char	**ft_free_tab(char **tab)
 {
 	int	x;
 
