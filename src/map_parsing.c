@@ -46,7 +46,7 @@ int ft_middle_lines(t_parsing *p)
             p->exit_count++;
         i++;
     }
-    free(p->line);
+    //free(p->line);
     return (1);
 }
 
@@ -91,8 +91,9 @@ int ft_parse_map(t_game *g, char *file)
 
 void	ft_check_map(t_game	*g, char *arg)
 {
-  	if (!ft_parse_map(g, arg))
-    	exit(1);
-  	if (!ft_find_path(g))
-		exit(1);
+  	if (!ft_parse_map(g, arg) || !ft_find_path(g))
+    {
+	    ft_putstr_fd("Invalid map", 2);
+        exit(2);
+    }
 }

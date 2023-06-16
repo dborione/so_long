@@ -129,6 +129,5 @@ void	ft_move(t_game *g)
 		free(g->mlx_ptr);
 		exit(1);
 	}
-	mlx_hook(g->mlx_window, 17, 0, ft_red_cross, g);
-	mlx_loop(g->mlx_ptr);
+
 }

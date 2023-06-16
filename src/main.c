@@ -5,11 +5,16 @@ int	main(int argc, char **argv)
   	t_game	g;
 
 	if (argc != 2)
+	{
+		ft_putstr_fd("Wrong Number of Arguments", 2);
 		return (1);
+	}
 	ft_init_struct(&g);
 	ft_check_map(&g, argv[1]);
-	ft_free_tab(g.map_array);
-	// ft_init_game(&g);
-	// ft_move(&g);
+	//ft_free_tab(g.map_array);
+	ft_init_game(&g);
+	mlx_hook(g.mlx_window, 17, 0, ft_red_cross, &g);
+	ft_move(&g);
+	mlx_loop(g.mlx_ptr);
   	exit(0);
 }

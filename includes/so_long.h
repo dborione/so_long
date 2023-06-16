@@ -123,4 +123,7 @@ void    ft_draw_moves(t_game *g);
 void    ft_mlx_put_image_to_window(t_game *g, void *img_ptr, int pos_y,  int pos_x);
 char	**ft_empty_tab(char **tab);
 char	**ft_free_tab(char **tab);
+int	ft_animation(t_game *g);
+void ft_coins(t_game *g, char *path);
+int	ft_red_cross(t_game *g);
 #endif
