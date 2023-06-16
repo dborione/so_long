@@ -93,7 +93,6 @@ void	ft_check_map(t_game	*g, char *arg)
 {
   	if (!ft_parse_map(g, arg))
     	exit(1);
-    ft_free_tab(g->map_array);
-  	// if (!ft_find_path(g))
-	// 	exit(1);
+  	if (!ft_find_path(g))
+		exit(1);
 }

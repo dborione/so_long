@@ -28,6 +28,7 @@ int ft_find_path(t_game *g)
     char    **map_copy;
     
     i = -1;
+    map_copy = NULL;
     map_copy = malloc((sizeof(char *) * (g->map_size_y + 1)));
     if (!map_copy)
         return (0); //and free map_array
@@ -35,7 +36,7 @@ int ft_find_path(t_game *g)
     {
         map_copy[i] = ft_strdup(g->map_array[i]);
         if (!map_copy[i])
-            return (0);
+            return (0); // and free
     }
     ft_get_player_pos(g);
     g->path_coll_count = 0;
