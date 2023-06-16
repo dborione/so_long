@@ -85,14 +85,15 @@ int ft_parse_map(t_game *g, char *file)
     close(p.fd);
     g->map_size_x = p.line_len;
     g->coll_count = p.coll_count;
-   // return (ft_build_map_array(&p, g, file));
-    return (1);
+    return (ft_build_map_array(&p, g, file));
+   // return (1);
 }
 
 void	ft_check_map(t_game	*g, char *arg)
 {
   	if (!ft_parse_map(g, arg))
     	exit(1);
+    ft_free_tab(g->map_array);
   	// if (!ft_find_path(g))
 	// 	exit(1);
 }
