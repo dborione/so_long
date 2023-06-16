@@ -1,38 +1,34 @@
 #include "../includes/so_long.h"
 
-int ft_pathfinding(char **map_copy, int y, int x)
+int ft_pathfinding(t_game *g, char **map_copy, int x, int y)
 {
-    static int  c_count;
-    static int  e_count;
     char        checked;
 
-    c_count = 0;
-    e_count = 0;
     checked = 'X';
-    if (map_copy[y][x] == 'C')
-        c_count++;
+    if (map_copy[x][y] == 'C')
+        g->path_coll_count++;
     if (map_copy[y][x] == 'E')
-        e_count++;
+        g->path_exit_count++;
 
-    map_copy[y][x] = checked;
-    if (map_copy[y][x - 1] != '1' && map_copy[y][x - 1] != checked)
-        ft_pathfinding(map_copy, y, x - 1);
-    if (map_copy[y - 1][x] != '1' && map_copy[y - 1][x] != checked)
-        ft_pathfinding(map_copy, y - 1, x);
-    if (map_copy[y][x + 1] != '1' && map_copy[y][x + 1] != checked)
-        ft_pathfinding(map_copy, y, x + 1);
-    if (map_copy[y + 1][x] != '1' && map_copy[y + 1][x] != checked)
-        ft_pathfinding(map_copy, y + 1, x);
+    map_copy[x][y] = checked;
+    if (map_copy[x][y - 1] != '1' && map_copy[x][y - 1] != checked)
+        ft_pathfinding(g, map_copy, x, y - 1);
+    if (map_copy[x - 1][y] != '1' && map_copy[x - 1][y] != checked)
+        ft_pathfinding(g, map_copy, x - 1, y);
+    if (map_copy[x][y + 1] != '1' && map_copy[x][y + 1] != checked)
+        ft_pathfinding(g, map_copy, x, y + 1);
+    if (map_copy[x + 1][y] != '1' && map_copy[x + 1][y] != checked)
+        ft_pathfinding(g, map_copy, x + 1, y);
     return (1);
 }
 
 int ft_find_path(t_game *g)
 {
-    int i;
+    int     i;
     char    **map_copy;
     
     i = -1;
-    map_copy = malloc((sizeof(char *) * g->map_size_y + 1));
+    map_copy = malloc((sizeof(char *) * g->map_size_y));
     if (!map_copy)
         return (0); //and free map_array
     while(g->map_array[++i])
@@ -41,8 +37,13 @@ int ft_find_path(t_game *g)
         if (!map_copy[i])
             return (0);
     }
-    ft_get_positions(g);
-    ft_pathfinding(map_copy, g->player.pos_y, g->player.pos_x);
+    ft_get_player_pos(g);
+    g->path_coll_count = 0;
+    g->path_exit_count = 0;
+    ft_pathfinding(g, map_copy, g->player.pos_x, g->player.pos_y);
+    if (g->path_coll_count != g->coll_count 
+        || g->path_exit_count!= 1)
+        return (0);
     //ft_free_tab_sl(map_copy); segfault
     return (1);
 }

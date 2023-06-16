@@ -1,6 +1,6 @@
 #include "../includes/so_long.h"
 
-void ft_get_positions(t_game *g)
+void ft_get_player_pos(t_game *g)
 {
     int i;
     int j;
@@ -13,8 +13,8 @@ void ft_get_positions(t_game *g)
         { 
             if (g->map_array[i][j] == 'P')
             {
-                g->player.pos_x = j;
-                g->player.pos_y = i;
+                g->player.pos_x = i;
+                g->player.pos_y = j;
             }
         }
         j = 0;

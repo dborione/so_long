@@ -79,9 +79,10 @@ typedef struct	s_game {
 	t_textures	t;
 	void		*mlx_ptr;
 	void		*mlx_window;
-	int			moves;
 	int			coll_count;
-	int			score;
+	int			path_coll_count;
+	int			path_exit_count;
+	int			moves;
 	int			map_size_x;
 	int			map_size_y;
     char		**map_array;
@@ -108,7 +109,7 @@ int ft_find_path(t_game *g);
 int ft_init_mlx(t_game *g);
 int ft_load_assets(t_game *g);
 int ft_key_input(int key, t_game *game);
-void ft_get_positions(t_game *g);
+void ft_get_player_pos(t_game *g);
 
 void	ft_check_map(t_game	*g, char *arg);
 void	ft_move(t_game *g);

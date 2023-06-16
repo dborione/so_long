@@ -87,6 +87,7 @@ int	ft_check_move(t_game *g, int pos_x, int pos_y)
 			exit(0);
 	g->player.pos_x = pos_x;
 	g->player.pos_y = pos_y;
+	g->moves++;
 	ft_init_map(g);
 	return (1);
 }
