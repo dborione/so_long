@@ -62,8 +62,8 @@ void ft_init_map(t_game *g)
 		j++;
 		i = 0;
 	}
-   	mlx_put_image_to_window(g->mlx_ptr, g->mlx_window, g->player.img_ptr,
-		g->player.pos_y * TILE_SIZE,  g->player.pos_x * TILE_SIZE);
+   	ft_mlx_put_image_to_window(g, g->player.img_ptr, g->player.pos_y * TILE_SIZE,  g->player.pos_x * TILE_SIZE);
+	ft_draw_moves(g);
 }
 
 

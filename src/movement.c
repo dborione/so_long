@@ -89,6 +89,7 @@ int	ft_check_move(t_game *g, int pos_x, int pos_y)
 	g->player.pos_y = pos_y;
 	g->moves++;
 	ft_init_map(g);
+	//mlx_do_sync(g->mlx_ptr);
 	return (1);
 }
 
@@ -115,6 +116,12 @@ int ft_key_input(int key, t_game *g)
     return (1);
 }
 
+int	ft_red_cross(t_game *g)
+{
+	mlx_destroy_window(g->mlx_ptr, g->mlx_window);
+	exit(0);
+}	
+
 void	ft_move(t_game *g)
 {
   	if (!mlx_hook(g->mlx_window, 2, 1L<<0, ft_key_input, g))
@@ -122,5 +129,6 @@ void	ft_move(t_game *g)
 		free(g->mlx_ptr);
 		exit(1);
 	}
+	mlx_hook(g->mlx_window, 17, 0, ft_red_cross, g);
 	mlx_loop(g->mlx_ptr);
 }
