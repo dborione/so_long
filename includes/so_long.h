@@ -52,12 +52,11 @@
 # define V_Y game->map.villain_pos_y
 
 typedef struct s_parsing {
-	char	*line;
+	int		fd;
 	int		player_count;
 	int		exit_count;
 	int		coll_count;
-	int		villain_count;
-	int		fd;
+	char	*line;
 	size_t 	line_len;
 }  t_parsing;
 
@@ -119,5 +118,6 @@ void	ft_check_map(t_game	*g, char *arg);
 void	ft_move(t_game *g);
 void	ft_init_game(t_game	*g);
 void ft_init_map(t_game *g);
+void  ft_init_struct(t_game *g);
 
 #endif

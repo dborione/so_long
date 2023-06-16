@@ -39,8 +39,6 @@ int ft_middle_lines(t_parsing *p)
             p->player_count++;
         if (*p->line == 'C')
             p->coll_count++;
-        if (*p->line == 'V')
-            p->villain_count++;
         if (*p->line == 'E')
             p->exit_count++;
         p->line++;
@@ -51,7 +49,7 @@ int ft_middle_lines(t_parsing *p)
 int  ft_check_valid_map(t_parsing *p)
 {
     if (p->player_count != 1 || p->exit_count != 1 ||
-        p->coll_count < 1 || p->villain_count < 1)
+        p->coll_count < 1)
         return (0);
     return (1);
 }

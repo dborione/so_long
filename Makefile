@@ -21,6 +21,7 @@ FILES = main.c 	\
 		pathfinding.c \
 		init_game.c \
 		movement.c \
+		utils.c \
 		get_next_line.c	\
 		get_next_line_utils.c	\
 
