@@ -53,8 +53,6 @@ void ft_init_map(t_game *g)
 					i * TILE_SIZE, j * TILE_SIZE);
 			if (g->map_array[j][i] == 'C')
 			{
-				//ft_animation(g);
-				//mlx_loop_hook(g->mlx_ptr, *ft_animation, g);
 				mlx_put_image_to_window(g->mlx_ptr, g->mlx_window, g->t.coll_img_ptr,
 					i * TILE_SIZE, j * TILE_SIZE);
 			}
@@ -64,8 +62,6 @@ void ft_init_map(t_game *g)
 		}
 		i = -1;
 	}
-//	mlx_loop_hook(g->mlx_ptr, *ft_animation, g);
-  //	ft_mlx_put_image_to_window(g, g->player.img_ptr, g->player.pos_y * TILE_SIZE,  g->player.pos_x * TILE_SIZE);
 	ft_draw_moves(g);
 }
 
@@ -89,7 +85,6 @@ void	ft_init_game(t_game	*g)
 	ft_init_mlx(g);
   	ft_load_assets(g);
 	ft_init_map(g);
-	
 }
 
 // void	ft_update_image(char *relative_path, void *img_ptr, t_game *g)
