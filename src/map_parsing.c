@@ -93,8 +93,8 @@ int ft_parse_map(t_game *g, char *file)
     }
     if (!ft_first_and_last(&p, LAST_LINE))
         return (0);
-    // if (!ft_check_valid_map(&p))
-    //     return (0);
+    if (!ft_check_valid_map(&p))
+        return (0);
     close(p.fd);
     g->map_size_x = p.line_len;
     g->coll_count = p.coll_count;
