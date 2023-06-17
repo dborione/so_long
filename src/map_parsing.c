@@ -7,6 +7,11 @@ int ft_first_and_last(t_parsing *p, int x)
 
     i = 0;
     p->line = get_next_line(p->fd);
+    while (p->line[i] == '\n')
+    {
+        free(p->line);
+        p->line = get_next_line(p->fd);
+    }
     while (p->line[i] == '1')
         i++;
     if (x == FIRST_LINE && p->line[i] != '\n')
@@ -30,6 +35,9 @@ int ft_middle_lines(t_parsing *p)
 
     i = 0;
     p->line = get_next_line(p->fd);
+    // printf("%s", p->line);
+    // printf("%zu\n ", ft_strlen(p->line));
+
     if (ft_strlen(p->line) != p->line_len)
         return (ft_free_and_return(p));
     if (p->line[i] != '1'
@@ -38,6 +46,10 @@ int ft_middle_lines(t_parsing *p)
     i++;
     while(p->line[i])
     {
+        if (p->line[i] != 'P' && p->line[i] != 'E' 
+            && p->line[i] != 'C' && p->line[i] != '0' 
+            && p->line[i] != '1' && p->line[i] != '\n')
+            return (0);
         if (p->line[i] == 'P')
             p->player_count++;
         if (p->line[i] == 'C')
@@ -66,6 +78,7 @@ int ft_parse_map(t_game *g, char *file)
 
     ft_init_parsing(&p);
     i = ft_count_lines(&p, file);
+    //printf("%d ", i);
     if (i < 3)
         return (0);
     g->map_size_y = i;
@@ -80,20 +93,21 @@ int ft_parse_map(t_game *g, char *file)
     }
     if (!ft_first_and_last(&p, LAST_LINE))
         return (0);
-    if (!ft_check_valid_map(&p))
-        return (0);
+    // if (!ft_check_valid_map(&p))
+    //     return (0);
     close(p.fd);
     g->map_size_x = p.line_len;
     g->coll_count = p.coll_count;
     return (ft_build_map_array(&p, g, file));
-   // return (1);
+   //return (1);
 }
 
 void	ft_check_map(t_game	*g, char *arg)
 {
-  	if (!ft_parse_map(g, arg) || !ft_find_path(g))
+  	if (!ft_parse_map(g, arg))
     {
 	    ft_putstr_fd("Invalid map", 2);
         exit(2);
     }
+    //ft_find_path(g)
 }
