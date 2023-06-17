@@ -126,4 +126,6 @@ char	**ft_free_tab(char **tab);
 int	ft_animation(t_game *g);
 void ft_coins(t_game *g, char *path);
 int	ft_red_cross(t_game *g);
+int	ft_player_anim(t_game *g);
+
 #endif
