@@ -10,14 +10,13 @@ int ft_pathfinding(t_game *g, char **map_copy, int x, int y)
     if (map_copy[y][x] == 'E')
         g->path_exit_count++;
     map_copy[x][y] = checked;
-    printf("%c ",  map_copy[x][y]);
 
-    if (map_copy[x][y - 1] != '1' && map_copy[x][y - 1] != checked)
-        ft_pathfinding(g, map_copy, x, y - 1);
+    if (map_copy[x][y + 1] != '1' && map_copy[x][y + 1] != checked)
+        ft_pathfinding(g, map_copy, x, y + 1);
+    // if (map_copy[x][y - 1] != '1' && map_copy[x][y - 1] != checked)
+    //     ft_pathfinding(g, map_copy, x, y - 1);
     if (map_copy[x - 1][y] != '1' && map_copy[x - 1][y] != checked)
         ft_pathfinding(g, map_copy, x - 1, y);
-    // if (map_copy[x][y + 1] != '1' && map_copy[x][y + 1] != checked)
-    //     ft_pathfinding(g, map_copy, x, y + 1);
     if (map_copy[x + 1][y] != '1' && map_copy[x + 1][y] != checked)
         ft_pathfinding(g, map_copy, x + 1, y);
     return (1);
@@ -42,14 +41,20 @@ int ft_find_path(t_game *g)
     ft_get_player_pos(g);
     g->path_coll_count = 0;
     g->path_exit_count = 0;
-    printf("%c ",  map_copy[g->player.pos_x][g->player.pos_y]);
+    // printf("%c",  map_copy[g->player.pos_x][g->player.pos_y + 1]);
 
     //printf("%d ",  g->player.pos_y);
-    ft_pathfinding(g, map_copy, g->player.pos_x, g->player.pos_y);
+    //ft_pathfinding(g, map_copy, g->player.pos_x, g->player.pos_y);
   
-    // if (g->path_coll_count != g->coll_count 
+    // if (g->path_coll_count != g->coll_count
     //     || g->path_exit_count!= 1)
     //     return (0);
     // ft_free_tab(map_copy);
+    i = 0;
+    while (map_copy[i])
+    {
+        printf("%s", map_copy[i]);
+        i++;
+    }
     return (1);
 }
