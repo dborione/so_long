@@ -1,5 +1,6 @@
 #include "../includes/so_long.h"
 
+
 int ft_free_and_return(t_parsing *p)
 {
     free(p->line);
@@ -74,7 +75,6 @@ int ft_build_map_array(t_parsing *p, t_game *g, char *file)
     while(i < g->map_size_y)
         g->map_array[++i] = get_next_line(p->fd);
     g->map_array[i] = NULL;
-    // printf("%s", g->map_array[7]);
     close(p->fd);
     return (1);
 }

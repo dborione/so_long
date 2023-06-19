@@ -12,7 +12,7 @@
 
 #	Compiler
 CC = gcc
-CFLAGS = -Wall -Wextra 
+CFLAGS = -Wall -Wextra
 
 #	Sources
 FILES = main.c 	\
