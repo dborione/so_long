@@ -58,7 +58,7 @@ int ft_middle_lines(t_parsing *p)
             p->exit_count++;
         i++;
     }
-    //free(p->line);
+    free(p->line);
     return (1);
 }
 
@@ -78,7 +78,6 @@ int ft_parse_map(t_game *g, char *file)
 
     ft_init_parsing(&p);
     i = ft_count_lines(&p, file);
-    //printf("%d ", i);
     if (i < 3)
         return (0);
     g->map_size_y = i;
@@ -95,12 +94,10 @@ int ft_parse_map(t_game *g, char *file)
         return (0);
     if (!ft_check_valid_map(&p))
         return (0);
-    //close(p.fd);
     g->map_size_x = p.line_len;
     g->coll_count = p.coll_count;
-    g->map_array = ft_split(file, '\n');
+    ft_build_map_array(&p, g, file);
     return (1);
-    //return (ft_build_map_array(&p, g, file));
 }
 
 void	ft_check_map(t_game	*g, char *arg)
@@ -110,8 +107,6 @@ void	ft_check_map(t_game	*g, char *arg)
 	    ft_putstr_fd("Invalid map", 2);
         exit(2);
     }
-    printf("%s", g->map_array[0]);
-
     // if (!ft_find_path(g))
-    //     exit(1);
+        // exit(1);
 }

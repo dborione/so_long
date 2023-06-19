@@ -16,6 +16,6 @@ int	main(int argc, char **argv)
 	// mlx_loop_hook(g.mlx_ptr, ft_player_anim, &g);
 	// ft_move(&g);
 	// mlx_loop(g.mlx_ptr);
-	//ft_free_tab(g.map_array);
+	ft_free_tab(g.map_array);
   	exit(0);
 }

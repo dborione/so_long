@@ -10,16 +10,16 @@ void    ft_init_struct(t_game *g)
 	g->map_size_y = 0;
 }
 
-void    ft_draw_moves(t_game *g)
-{
-    mlx_string_put(g->mlx_ptr, g->mlx_window, 0, TILE_SIZE, 0xFFFFFF, "moves:");
-    mlx_string_put(g->mlx_ptr, g->mlx_window, TILE_SIZE, TILE_SIZE, 0xFFFFFF, ft_itoa(g->moves));
-}
+// void    ft_draw_moves(t_game *g)
+// {
+//     mlx_string_put(g->mlx_ptr, g->mlx_window, 0, TILE_SIZE, 0xFFFFFF, "moves:");
+//     mlx_string_put(g->mlx_ptr, g->mlx_window, TILE_SIZE, TILE_SIZE, 0xFFFFFF, ft_itoa(g->moves));
+// }
 
-void    ft_mlx_put_image_to_window(t_game *g, void *img_ptr, int pos_y,  int pos_x)
-{
-    mlx_put_image_to_window(g->mlx_ptr, g->mlx_window, img_ptr, pos_y, pos_x);
-}
+// void    ft_mlx_put_image_to_window(t_game *g, void *img_ptr, int pos_y,  int pos_x)
+// {
+//     mlx_put_image_to_window(g->mlx_ptr, g->mlx_window, img_ptr, pos_y, pos_x);
+// }
 
 // void ft_coins(t_game *g, char *path)
 // {
@@ -47,43 +47,43 @@ void    ft_mlx_put_image_to_window(t_game *g, void *img_ptr, int pos_y,  int pos
 // }
 
 
-int	ft_animation(t_game *g)
-{
-	static int		frame;
-	int		img_width = TILE_SIZE;
-	int		img_height = TILE_SIZE;
-	if (frame == FRAME_SPEED)
-	{
-		g->t.coll_img_ptr = mlx_xpm_file_to_image(g->mlx_ptr, "./assets/textures/coll/coin_3.xpm", &img_width, &img_height);
-		//ft_coins(g, "./assets/textures/coll/coin_3.xpm");
-		frame = 0;
-	}
-	if (frame < (FRAME_SPEED / 2))
-		g->t.coll_img_ptr = mlx_xpm_file_to_image(g->mlx_ptr, "./assets/textures/coll/coin_3.xpm", &img_width, &img_height);
-		//ft_coins(g, "./assets/textures/coll/coin_1.xpm");
-	else
-		g->t.coll_img_ptr = mlx_xpm_file_to_image(g->mlx_ptr, "./assets/textures/coll/coin_3.xpm", &img_width, &img_height);
-		//ft_coins(g, "./assets/textures/coll/coin_2.xpm");
-	frame++;
-	return (1);
-}
+// int	ft_animation(t_game *g)
+// {
+// 	static int		frame;
+// 	int		img_width = TILE_SIZE;
+// 	int		img_height = TILE_SIZE;
+// 	if (frame == FRAME_SPEED)
+// 	{
+// 		g->t.coll_img_ptr = mlx_xpm_file_to_image(g->mlx_ptr, "./assets/textures/coll/coin_3.xpm", &img_width, &img_height);
+// 		//ft_coins(g, "./assets/textures/coll/coin_3.xpm");
+// 		frame = 0;
+// 	}
+// 	if (frame < (FRAME_SPEED / 2))
+// 		g->t.coll_img_ptr = mlx_xpm_file_to_image(g->mlx_ptr, "./assets/textures/coll/coin_3.xpm", &img_width, &img_height);
+// 		//ft_coins(g, "./assets/textures/coll/coin_1.xpm");
+// 	else
+// 		g->t.coll_img_ptr = mlx_xpm_file_to_image(g->mlx_ptr, "./assets/textures/coll/coin_3.xpm", &img_width, &img_height);
+// 		//ft_coins(g, "./assets/textures/coll/coin_2.xpm");
+// 	frame++;
+// 	return (1);
+// }
 
-int	ft_player_anim(t_game *g)
-{
-	static int		frame;
-	int		img_width = TILE_SIZE;
-	int		img_height = TILE_SIZE;
+// int	ft_player_anim(t_game *g)
+// {
+// 	static int		frame;
+// 	int		img_width = TILE_SIZE;
+// 	int		img_height = TILE_SIZE;
 
-	ft_init_map(g);
-	if (frame == FRAME_SPEED)
-		frame = 0;
-	if (frame < 10)
-		g->player.img_ptr = mlx_xpm_file_to_image(g->mlx_ptr, "./assets/textures/coll/coin_2.xpm", &img_width, &img_height);
-	else if (frame >= 10 && frame < 20)
-		g->player.img_ptr = mlx_xpm_file_to_image(g->mlx_ptr, "./assets/textures/coll/coin_1.xpm", &img_width, &img_height);
-	else
-		g->player.img_ptr = mlx_xpm_file_to_image(g->mlx_ptr, "./assets/textures/coll/coin_2.xpm", &img_width, &img_height);
-	mlx_put_image_to_window(g->mlx_ptr, g->mlx_window, g->player.img_ptr, g->player.pos_y * TILE_SIZE, g->player.pos_x * TILE_SIZE);
-	frame++;
-	return (1);
-}
+// 	ft_init_map(g);
+// 	if (frame == FRAME_SPEED)
+// 		frame = 0;
+// 	if (frame < 10)
+// 		g->player.img_ptr = mlx_xpm_file_to_image(g->mlx_ptr, "./assets/textures/coll/coin_2.xpm", &img_width, &img_height);
+// 	else if (frame >= 10 && frame < 20)
+// 		g->player.img_ptr = mlx_xpm_file_to_image(g->mlx_ptr, "./assets/textures/coll/coin_1.xpm", &img_width, &img_height);
+// 	else
+// 		g->player.img_ptr = mlx_xpm_file_to_image(g->mlx_ptr, "./assets/textures/coll/coin_2.xpm", &img_width, &img_height);
+// 	mlx_put_image_to_window(g->mlx_ptr, g->mlx_window, g->player.img_ptr, g->player.pos_y * TILE_SIZE, g->player.pos_x * TILE_SIZE);
+// 	frame++;
+// 	return (1);
+// }

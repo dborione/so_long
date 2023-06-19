@@ -1,25 +1,6 @@
 #include "../includes/so_long.h"
 
-void ft_get_player_pos(t_game *g)
-{
-    int i;
-    int j;
 
-    i = -1;
-    j = -1;
-    while (g->map_array[++i])
-    {
-        while(g->map_array[i][++j])
-        { 
-            if (g->map_array[i][j] == 'P')
-            {
-                g->player.pos_x = i;
-                g->player.pos_y = j;
-            }
-        }
-        j = 0;
-    }
-}
 
 int ft_init_mlx(t_game *g)
 {

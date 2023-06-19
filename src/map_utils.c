@@ -53,19 +53,28 @@ int    ft_count_lines(t_parsing *p, char *file)
 
 int ft_build_map_array(t_parsing *p, t_game *g, char *file)
 {
-//     int i;
-//     int j;
+    int i;
 
-//     i = -1;
-//     j = g->map_size_y;
-//    // printf("%d", g->map_size_y);
-//     g->map_array = malloc((sizeof(char *) * (g->map_size_y + 1)));
-//     if (!g->map_array)
-//         return (0);
-//     ft_open_fd(p, file);
-//     while(i < j)
-//         g->map_array[++i] = get_next_line(p->fd);
-//     g->map_array[i] = NULL;
-//     close(p->fd);
+    i = 0;
+    g->map_array = malloc((sizeof(char *) * (g->map_size_y + 1)));
+    if (!g->map_array)
+        return (0);
+    ft_open_fd(p, file);
+    p->line = get_next_line(p->fd);
+    if (!p->line)
+        return (0);
+    while (*p->line == '\n')
+    {
+        free(p->line);
+        p->line = get_next_line(p->fd);
+        if (!p->line)
+            return (0);
+    }
+    g->map_array[i] = p->line;
+    while(i < g->map_size_y)
+        g->map_array[++i] = get_next_line(p->fd);
+    g->map_array[i] = NULL;
+    // printf("%s", g->map_array[7]);
+    close(p->fd);
     return (1);
 }
