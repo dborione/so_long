@@ -18,7 +18,6 @@ int ft_first_and_last(t_parsing *p, int x)
 
     i = 0;
     p->line = get_next_line(p->fd);
-
     while (p->line[i] == '\n')
     {
         free(p->line);
@@ -105,14 +104,7 @@ int ft_parse_map(t_game *g, char *file)
         return (0);
     g->map_size_x = p.line_len;
     g->coll_count = p.coll_count;
-    ft_build_map_array(&p, g, file);
-    if (!ft_find_path(g))
-    {
-        ft_free_and_quit(&p);
-	    ft_putstr_fd("Path not found", 2);
-        exit(1);
-    }
-    return (1);
+    return (ft_build_map_array(&p, g, file));
 }
 
 void	ft_check_map(t_game	*g, char *arg)
@@ -121,5 +113,11 @@ void	ft_check_map(t_game	*g, char *arg)
     {
 	    ft_putstr_fd("Invalid map", 2);
         exit(2);
+    }
+    if (!ft_find_path(g))
+    {
+        ft_free_tab(g->map_array);
+	    ft_putstr_fd("Path not found", 2);
+        exit(1);
     }
 }

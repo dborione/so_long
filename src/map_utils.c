@@ -1,6 +1,5 @@
 #include "../includes/so_long.h"
 
-
 int ft_free_and_return(t_parsing *p)
 {
     free(p->line);
