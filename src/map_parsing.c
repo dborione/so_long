@@ -34,6 +34,7 @@ int ft_first_and_last(t_parsing *p, int x)
         last_line_len = ft_strlen(p->line);
         if (last_line_len != p->line_len - 1)
             return (ft_free_and_quit(p));
+        return (1);
     }
     p->line_len = ft_strlen(p->line);
     free(p->line);
@@ -74,7 +75,8 @@ int  ft_check_valid_map(t_parsing *p)
 {
     if (p->player_count != 1 || p->exit_count != 1 ||
         p->coll_count < 1)
-        return (0); //leak here
+        return (ft_free_and_quit(p)); //leak here
+    free(p->line);
     return (1);
 }
 
