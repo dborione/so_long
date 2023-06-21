@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pathfinding.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dborione <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/21 16:15:10 by dborione          #+#    #+#             */
+/*   Updated: 2023/06/21 16:15:45 by dborione         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/so_long.h"
 
-void ft_get_player_pos(t_game *g)
+static  void ft_get_player_pos(t_game *g)
 {
     int i;
     int j;
@@ -21,7 +33,7 @@ void ft_get_player_pos(t_game *g)
     }
 }
 
-int ft_pathfinding(t_game *g, char **map_copy, int x, int y)
+static  int ft_pathfinding(t_game *g, char **map_copy, int x, int y)
 {
     char        checked;
 
@@ -42,7 +54,6 @@ int ft_pathfinding(t_game *g, char **map_copy, int x, int y)
         ft_pathfinding(g, map_copy, x + 1, y);
     return (1);
 }
-
 
 int ft_find_path(t_game *g)
 {

@@ -21,8 +21,8 @@
 # include "../libft/includes/libft.h"
 
 // General
-# define WIN_WIDTH 16
-# define WIN_HEIGHT 16
+# define WIN_WIDTH 500
+# define WIN_HEIGHT 500
 # define MLX_FAILURE 1
 # define MLX_SUCCESS 0
 # define TILE_SIZE 64
@@ -95,37 +95,34 @@ typedef struct	s_game {
 void	ft_init_game(t_game *game);
 
 // Parsing
-int 	ft_first_and_last(t_parsing *p, int x);
+void	ft_check_map(t_game	*g, char *arg);
 int		ft_parse_map(t_game *game, char *file);
+
 int    	ft_count_lines(t_parsing *p, char *file);
 void    ft_init_parsing(t_parsing *p);
-void    ft_open_fd(t_parsing *p, char *file);
-int    	ft_check_walls(t_parsing *p, int i);
-int 	ft_free_and_return(t_parsing *p);
+int    	ft_open_fd(t_parsing *p, char *file);
+int 	ft_free_and_quit(t_parsing *p);
 int    	ft_build_map_array(t_parsing *p, t_game *g, char *file);
 
 // Pathfinding
 int ft_find_path(t_game *g);
-        // printf("%s", g->map.map_array[i]);
 
 // MLX
 int ft_init_mlx(t_game *g);
 int ft_load_assets(t_game *g);
 int ft_key_input(int key, t_game *game);
-void ft_get_player_pos(t_game *g);
 
-void	ft_check_map(t_game	*g, char *arg);
 void	ft_move(t_game *g);
 void	ft_init_game(t_game	*g);
-void ft_init_map(t_game *g);
-void  ft_init_struct(t_game *g);
+void 	ft_init_map(t_game *g);
+void  	ft_init_struct(t_game *g);
 void    ft_draw_moves(t_game *g);
 void    ft_mlx_put_image_to_window(t_game *g, void *img_ptr, int pos_y,  int pos_x);
 char	**ft_empty_tab(char **tab);
 char	**ft_free_tab(char **tab);
-int	ft_animation(t_game *g);
-void ft_coins(t_game *g, char *path);
-int	ft_red_cross(t_game *g);
-int	ft_player_anim(t_game *g);
+int		ft_animation(t_game *g);
+void 	ft_coins(t_game *g, char *path);
+int		ft_red_cross(t_game *g);
+int		ft_player_anim(t_game *g);
 
 #endif

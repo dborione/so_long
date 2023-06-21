@@ -22,8 +22,8 @@ FILES = main.c 	\
 		get_next_line.c	\
 		get_next_line_utils.c	\
 		pathfinding.c \
-#		init_game.c \
-#		movement.c \
+		init_game.c \
+		movement.c \
 
 SRCS = $(addprefix src/, $(FILES))
 
@@ -49,12 +49,12 @@ DEFAULT = \033[0m
 all :	$(NAME)
 
 .c.o:
-#	$(CC) $(CFLAGS) -Imlx -c $< -o $(<:.c=.o)
-	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+	$(CC) $(CFLAGS) -Imlx -c $< -o $(<:.c=.o)
+#	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 $(NAME): $(LIBFT) $(OBJS)
-#	$(CC) $(CFLAGS) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(LIBFT_PATH)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT_PATH)
+	$(CC) $(CFLAGS) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(LIBFT_PATH)
+#	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT_PATH)
 	@echo "$(GREEN)[Done!]$(DEFAULT)"
 
 $(LIBFT):
