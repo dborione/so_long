@@ -122,5 +122,4 @@ void	ft_check_map(t_game	*g, char *arg)
 	    ft_putstr_fd("Invalid map", 2);
         exit(2);
     }
-
 }
