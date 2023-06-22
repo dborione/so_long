@@ -21,12 +21,9 @@ int	ft_check_move(t_game *g, int pos_x, int pos_y)
 		g->coll_count--;
 		g->map_array[pos_x][pos_y] = '0';
 	}
-	if (g->map_array[pos_x][pos_y] == 'E')
-	{
-		if (g->coll_count == 0)
-			ft_mlx_quit(g, MLX_SUCCESS);
-		return (0);
-	}
+	if (g->map_array[pos_x][pos_y] == 'E'
+		&& g->coll_count == 0)
+		ft_mlx_quit(g, MLX_SUCCESS);
 	g->player.pos_x = pos_x;
 	g->player.pos_y = pos_y;
 	g->moves++;
