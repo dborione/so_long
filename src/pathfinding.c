@@ -65,6 +65,7 @@ int	ft_find_path(t_game *g)
 		return (0);
 	while (g->map_array[++i])
 		map_copy[i] = ft_strdup(g->map_array[i]);
+    map_copy[i] = NULL;
 	ft_get_player_pos(g);
 	g->path_coll_count = 0;
 	g->path_exit_count = 0;

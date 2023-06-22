@@ -22,13 +22,13 @@ static	int	ft_first_and_last(t_parsing *p, int x)
 	while (p->line[i] == '1')
 		i++;
 	if (x == FIRST_LINE && p->line[i] != '\n')
-		return (ft_free_and_quit(p));
+		return (ft_free_gnl(p));
 	if (x == LAST_LINE)
 	{
 		last_line_len = ft_strlen(p->line);
 		if (p->line[i] != '\0'
 			|| last_line_len != p->line_len - 1)
-			return (ft_free_and_quit(p));
+			return (ft_free_gnl(p));
 		return (1);
 	}
 	p->line_len = ft_strlen(p->line);
@@ -43,16 +43,16 @@ static	int	ft_middle_lines(t_parsing *p)
 	i = 0;
 	p->line = get_next_line(p->fd);
 	if (ft_strlen(p->line) != p->line_len)
-		return (ft_free_and_quit(p));
+		return (ft_free_gnl(p));
 	if (p->line[i] != '1'
 		|| p->line[p->line_len - 2] != '1')
-		return (ft_free_and_quit(p));
+		return (ft_free_gnl(p));
 	while (p->line[++i])
 	{
 		if (p->line[i] != 'P' && p->line[i] != 'E'
 			&& p->line[i] != 'C' && p->line[i] != '0'
 			&& p->line[i] != '1' && p->line[i] != '\n')
-			return (ft_free_and_quit(p));
+			return (ft_free_gnl(p));
 		if (p->line[i] == 'P')
 			p->player_count++;
 		if (p->line[i] == 'C')
@@ -68,7 +68,7 @@ static	int	ft_check_valid_map(t_parsing *p)
 {
 	if (p->player_count != 1 || p->exit_count != 1
 		|| p->coll_count < 1)
-		return (ft_free_and_quit(p)); //leak here
+		return (ft_free_gnl(p));
 	free(p->line);
 	return (1);
 }

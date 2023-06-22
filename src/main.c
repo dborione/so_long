@@ -20,10 +20,10 @@ int	main(int argc, char **argv)
 		ft_error_and_quit(1);
 	ft_init_struct(&g);
 	ft_check_map(&g, argv[1]);
-	ft_init_game(&g);
-	mlx_hook(g.mlx_window, 17, 0, ft_red_cross, &g);
-	ft_move(&g);
-	mlx_loop(g.mlx_ptr);
+	// ft_init_game(&g);
+	// mlx_hook(g.mlx_window, 17, 0, ft_red_cross, &g);
+	// ft_move(&g);
+	// mlx_loop(g.mlx_ptr);
 	ft_free_tab(g.map_array);
 	exit (0);
 }

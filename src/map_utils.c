@@ -21,7 +21,7 @@ void	ft_check_ber(char *file)
 		ft_error_and_quit(2);
 }
 
-int	ft_free_and_quit(t_parsing *p)
+int	ft_free_gnl(t_parsing *p)
 {
 	while (p->line)
 	{
@@ -69,11 +69,11 @@ int	ft_build_map_array(t_parsing *p, t_game *g, char *file)
 	i = 0;
 	g->map_array = malloc((sizeof(char *) * (g->map_size_y + 1)));
 	if (!g->map_array)
-		return (0);
+		return (ft_free_gnl(p));
 	ft_open_fd(p, file);
 	p->line = get_next_line(p->fd);
 	if (!p->line)
-		return (0);
+		return (ft_free_gnl(p));
 	g->map_array[i] = p->line;
 	while (i < g->map_size_y)
 		g->map_array[++i] = get_next_line(p->fd);

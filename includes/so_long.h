@@ -101,7 +101,7 @@ int		ft_parse_map(t_game *game, char *file);
 int    	ft_count_lines(t_parsing *p, char *file);
 void    ft_init_parsing(t_parsing *p);
 int    	ft_open_fd(t_parsing *p, char *file);
-int 	ft_free_and_quit(t_parsing *p);
+int 	ft_free_gnl(t_parsing *p);
 int    	ft_build_map_array(t_parsing *p, t_game *g, char *file);
 
 // Pathfinding

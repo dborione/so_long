@@ -46,19 +46,19 @@ void	ft_init_struct(t_game *g)
 	g->map_size_y = 0;
 }
 
-void	ft_put_img(t_game *g, void *ptr, int pos1, int pos2)
-{
-	mlx_put_image_to_window(g->mlx_ptr, g->mlx_window,
-		ptr, pos1, pos2);
-}
+// void	ft_put_img(t_game *g, void *ptr, int pos1, int pos2)
+// {
+// 	mlx_put_image_to_window(g->mlx_ptr, g->mlx_window,
+// 		ptr, pos1, pos2);
+// }
 
-void	ft_draw_moves(t_game *g)
-{
-	int	s1_pos;
+// void	ft_draw_moves(t_game *g)
+// {
+// 	int	s1_pos;
 
-	s1_pos = ((g->map_size_x / 2) - 1) * TILE_SIZE;
-	mlx_string_put(g->mlx_ptr, g->mlx_window, s1_pos,
-		g->map_size_y * TILE_SIZE, 0xFFFFFF, "moves:");
-	mlx_string_put(g->mlx_ptr, g->mlx_window, s1_pos + TILE_SIZE,
-		g->map_size_y * TILE_SIZE, 0xFFFFFF, ft_itoa(g->moves));
-}
+// 	s1_pos = ((g->map_size_x / 2) - 1) * TILE_SIZE;
+// 	mlx_string_put(g->mlx_ptr, g->mlx_window, s1_pos,
+// 		g->map_size_y * TILE_SIZE, 0xFFFFFF, "moves:");
+// 	mlx_string_put(g->mlx_ptr, g->mlx_window, s1_pos + TILE_SIZE,
+// 		g->map_size_y * TILE_SIZE, 0xFFFFFF, ft_itoa(g->moves));
+// }
