@@ -68,9 +68,9 @@ void	ft_load_assets(t_game *g)
 	img_width = TILE_SIZE;
 	img_height = TILE_SIZE;
 	g->player.relative_path = "./assets/player/sprite_1.xpm";
-	g->t.wall_relative_path = "./assets/textures/walls/sprite_2.xpm";
-	g->t.exit_relative_path = "./assets/textures/sprite_3.xpm";
-	g->t.coll_relative_path = "./assets/textures/coll/sprite_0.xpm";
+	g->t.wall_relative_path = "./assets/walls/sprite_2.xpm";
+	g->t.exit_relative_path = "./assets/exit/sprite_3.xpm";
+	g->t.coll_relative_path = "./assets/collectibles/sprite_0.xpm";
 	g->player.img_ptr = mlx_xpm_file_to_image(g->mlx_ptr,
 			g->player.relative_path, &img_width, &img_height);
 	g->t.wall_img_ptr = mlx_xpm_file_to_image(g->mlx_ptr,
