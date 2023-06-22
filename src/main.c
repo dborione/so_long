@@ -18,15 +18,6 @@ int	ft_red_cross(t_game *g)
 	return (1);
 }
 
-void	ft_mlx_quit(t_game *g, int exit_code)
-{
-	mlx_destroy_window(g->mlx_ptr, g->mlx_window);
-	ft_free_tab(g->map_array);
-	if (exit_code == MLX_FAILURE)
-		ft_putstr_fd("MLX error", 2);
-	exit (exit_code);
-}
-
 int	main(int argc, char **argv)
 {
 	t_game	g;

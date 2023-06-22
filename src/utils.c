@@ -12,6 +12,15 @@
 
 #include "../includes/so_long.h"
 
+void	ft_mlx_quit(t_game *g, int exit_code)
+{
+	mlx_destroy_window(g->mlx_ptr, g->mlx_window);
+	ft_free_tab(g->map_array);
+	if (exit_code == MLX_FAILURE)
+		ft_putstr_fd("MLX error", 2);
+	exit (exit_code);
+}
+
 void	ft_error_and_quit(int err_code)
 {
 	ft_putstr_fd("Error\n", 2);
@@ -44,12 +53,6 @@ void	ft_init_struct(t_game *g)
 	g->moves = 0;
 	g->map_size_x = 0;
 	g->map_size_y = 0;
-}
-
-void	ft_put_img(t_game *g, void *ptr, int pos1, int pos2)
-{
-	mlx_put_image_to_window(g->mlx_ptr, g->mlx_window,
-		ptr, pos1, pos2);
 }
 
 void	ft_draw_moves(t_game *g)

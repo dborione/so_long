@@ -12,6 +12,12 @@
 
 #include "../includes/so_long.h"
 
+void	ft_put_img(t_game *g, void *ptr, int pos1, int pos2)
+{
+	mlx_put_image_to_window(g->mlx_ptr, g->mlx_window,
+		ptr, pos1, pos2);
+}
+
 int	ft_init_mlx(t_game *g)
 {
 	g->mlx_ptr = mlx_init();
@@ -54,7 +60,7 @@ void	ft_init_map(t_game *g)
 	ft_draw_moves(g);
 }
 
-int	ft_load_assets(t_game *g)
+void	ft_load_assets(t_game *g)
 {
 	int	img_width;
 	int	img_height;

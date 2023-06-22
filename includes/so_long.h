@@ -108,7 +108,7 @@ int ft_find_path(t_game *g);
 
 // MLX
 int ft_init_mlx(t_game *g);
-int ft_load_assets(t_game *g);
+void ft_load_assets(t_game *g);
 int ft_key_input(int key, t_game *game);
 
 void	ft_move(t_game *g);

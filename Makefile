@@ -12,7 +12,7 @@
 
 #	Compiler
 CC = gcc
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -Werror
 
 #	Sources
 FILES = main.c 	\
@@ -50,15 +50,11 @@ all :	$(NAME)
 
 .c.o:
 	$(CC) $(CFLAGS) -Imlx -c $< -o $(<:.c=.o)
-#	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
-$(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(LIBFT_PATH)
-#	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT_PATH)
-	@echo "$(GREEN)[Done!]$(DEFAULT)"
-
-$(LIBFT):
+$(NAME): $(OBJS)
 	@make -C $(LIBFT_DIR)
+	$(CC) $(CFLAGS) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(LIBFT_PATH)
+	@echo "$(GREEN)[Done!]$(DEFAULT)"
 
 #	Cleaning
 clean:
@@ -74,4 +70,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY:	clean fclean re all
+.PHONY:	clean fclean re all bonus
