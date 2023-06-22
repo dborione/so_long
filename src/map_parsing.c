@@ -28,12 +28,11 @@ static	int	ft_first_and_last(t_parsing *p, int x)
 		i++;
 	if (x == FIRST_LINE && p->line[i] != '\n')
 		return (ft_free_and_quit(p));
-	if (x == LAST_LINE && p->line[i] != '\0')
-		return (ft_free_and_quit(p));
 	if (x == LAST_LINE)
 	{
 		last_line_len = ft_strlen(p->line);
-		if (last_line_len != p->line_len - 1)
+		if (p->line[i] != '\0'
+			|| last_line_len != p->line_len - 1)
 			return (ft_free_and_quit(p));
 		return (1);
 	}
@@ -53,8 +52,7 @@ static	int	ft_middle_lines(t_parsing *p)
 	if (p->line[i] != '1'
 		|| p->line[p->line_len - 2] != '1')
 		return (ft_free_and_quit(p));
-	i++;
-	while (p->line[i])
+	while (p->line[++i])
 	{
 		if (p->line[i] != 'P' && p->line[i] != 'E'
 			&& p->line[i] != 'C' && p->line[i] != '0'
@@ -66,7 +64,6 @@ static	int	ft_middle_lines(t_parsing *p)
 			p->coll_count++;
 		if (p->line[i] == 'E')
 			p->exit_count++;
-		i++;
 	}
 	free(p->line);
 	return (1);
