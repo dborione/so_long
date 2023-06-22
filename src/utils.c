@@ -12,6 +12,30 @@
 
 #include "../includes/so_long.h"
 
+void	ft_error_and_quit(int err_code)
+{
+	ft_putstr_fd("Error\n", 2);
+	if (err_code == 1)
+		ft_putstr_fd("Wrong Number of Arguments", 2);
+	if (err_code == 2)
+		ft_putstr_fd("Wrong file extension", 2);	
+	if (err_code == 3)
+		ft_putstr_fd("File not found", 2);
+	if (err_code == 4)
+		ft_putstr_fd("Invalid map", 2);
+	if (err_code == 5)
+		ft_putstr_fd("Path not found", 2);
+	exit(err_code);
+}
+
+void	ft_init_parsing(t_parsing *p)
+{
+	p->coll_count = 0;
+	p->exit_count = 0;
+	p->line_len = 0;
+	p->player_count = 0;
+}
+
 void	ft_init_struct(t_game *g)
 {
 	g->coll_count = 0;
@@ -20,6 +44,12 @@ void	ft_init_struct(t_game *g)
 	g->moves = 0;
 	g->map_size_x = 0;
 	g->map_size_y = 0;
+}
+
+void	ft_put_img(t_game *g, void *ptr, int pos1, int pos2)
+{
+	mlx_put_image_to_window(g->mlx_ptr, g->mlx_window,
+		ptr, pos1, pos2);
 }
 
 void	ft_draw_moves(t_game *g)

@@ -124,5 +124,7 @@ int		ft_animation(t_game *g);
 void 	ft_coins(t_game *g, char *path);
 int		ft_red_cross(t_game *g);
 int		ft_player_anim(t_game *g);
-
+void	ft_put_img(t_game *g, void *ptr, int pos1, int pos2);
+void	ft_error_and_quit(int err_code);
+void	ft_check_ber(char *file);
 #endif

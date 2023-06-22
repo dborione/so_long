@@ -12,6 +12,15 @@
 
 #include "../includes/so_long.h"
 
+void	ft_check_ber(char *file)
+{
+	int	ext;
+
+	ext = ft_strlen(file) - 4;
+	if (ft_strncmp(&file[ext], ".ber", 4))
+		ft_error_and_quit(2);
+}
+
 int	ft_free_and_quit(t_parsing *p)
 {
 	while (p->line)
@@ -26,17 +35,9 @@ int	ft_free_and_quit(t_parsing *p)
 int	ft_open_fd(t_parsing *p, char *file)
 {
 	p->fd = open(file, O_RDONLY);
-	if (!p->fd)
+	if (p->fd == -1)
 		return (0);
 	return (1);
-}
-
-void	ft_init_parsing(t_parsing *p)
-{
-	p->coll_count = 0;
-	p->exit_count = 0;
-	p->line_len = 0;
-	p->player_count = 0;
 }
 
 int	ft_count_lines(t_parsing *p, char *file)
@@ -45,7 +46,8 @@ int	ft_count_lines(t_parsing *p, char *file)
 
 	i = 0;
 	if (!ft_open_fd(p, file))
-		ft_putstr_fd("File Not Found", 2);
+		ft_error_and_quit(3);
+	ft_check_ber(file);
 	p->line = get_next_line(p->fd);
 	if (!p->line)
 		return (0);

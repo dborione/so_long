@@ -41,21 +41,16 @@ void	ft_init_map(t_game *g)
 		while (++i <= g->map_size_x)
 		{
 			if (g->map_array[j][i] == '1')
-				mlx_put_image_to_window(g->mlx_ptr, g->mlx_window,
-					g->t.wall_img_ptr, i * TILE_SIZE, j * TILE_SIZE);
+				ft_put_img(g, g->t.wall_img_ptr, i * TILE_SIZE, j * TILE_SIZE);
 			if (g->map_array[j][i] == 'C')
-			{
-				mlx_put_image_to_window(g->mlx_ptr, g->mlx_window,
-					g->t.coll_img_ptr, i * TILE_SIZE, j * TILE_SIZE);
-			}
+				ft_put_img(g, g->t.coll_img_ptr, i * TILE_SIZE, j * TILE_SIZE);
 			if (g->map_array[j][i] == 'E')
-				mlx_put_image_to_window(g->mlx_ptr, g->mlx_window,
-					g->t.exit_img_ptr, i * TILE_SIZE, j * TILE_SIZE);
+				ft_put_img(g, g->t.exit_img_ptr, i * TILE_SIZE, j * TILE_SIZE);
 		}
 		i = -1;
 	}
-	mlx_put_image_to_window(g->mlx_ptr, g->mlx_window, g->player.img_ptr,
-		g->player.pos_y * TILE_SIZE, g->player.pos_x * TILE_SIZE);
+	ft_put_img(g, g->player.img_ptr, g->player.pos_y * TILE_SIZE,
+		g->player.pos_x * TILE_SIZE);
 	ft_draw_moves(g);
 }
 

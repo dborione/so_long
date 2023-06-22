@@ -109,14 +109,10 @@ int	ft_parse_map(t_game *g, char *file)
 void	ft_check_map(t_game	*g, char *arg)
 {
 	if (!ft_parse_map(g, arg))
-	{
-		ft_putstr_fd("Invalid map", 2);
-		exit(2);
-	}
+		ft_error_and_quit(4);
 	if (!ft_find_path(g))
 	{
 		ft_free_tab(g->map_array);
-		ft_putstr_fd("Path not found", 2);
-		exit(1);
+		ft_error_and_quit(5);
 	}
 }

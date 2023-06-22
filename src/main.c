@@ -17,10 +17,7 @@ int	main(int argc, char **argv)
 	t_game	g;
 
 	if (argc != 2)
-	{
-		ft_putstr_fd("Wrong Number of Arguments", 2);
-		exit(1);
-	}
+		ft_error_and_quit(1);
 	ft_init_struct(&g);
 	ft_check_map(&g, argv[1]);
 	ft_init_game(&g);
