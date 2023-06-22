@@ -51,6 +51,6 @@ int	ft_key_input(int key, t_game *g)
 
 void	ft_move(t_game *g)
 {
-	if (!mlx_hook(g->mlx_window, 2, MASK, ft_key_input, g))
+	if (!mlx_hook(g->mlx_window, 2, 1L << 0, ft_key_input, g))
 		ft_mlx_quit(g, MLX_FAILURE);
 }
