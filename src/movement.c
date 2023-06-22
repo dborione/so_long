@@ -24,7 +24,7 @@ int	ft_check_move(t_game *g, int pos_x, int pos_y)
 	if (g->map_array[pos_x][pos_y] == 'E')
 	{
 		if (g->coll_count == 0)
-			exit(0);
+			ft_mlx_quit(g, MLX_SUCCESS);
 		return (0);
 	}
 	g->player.pos_x = pos_x;
@@ -45,26 +45,12 @@ int	ft_key_input(int key, t_game *g)
 	if (key == A_KEY || key == LEFT_ARROW_KEY)
 		return (ft_check_move(g, g->player.pos_x, g->player.pos_y - 1));
 	if (key == ESC_KEY)
-	{
-		mlx_destroy_window(g->mlx_ptr, g->mlx_window);
-		exit(0);
-	}
+		ft_mlx_quit(g, MLX_SUCCESS);
 	return (1);
 }
 
-int	ft_red_cross(t_game *g)
-{
-	mlx_destroy_window(g->mlx_ptr, g->mlx_window);
-	exit(0);
-}	
-
 void	ft_move(t_game *g)
 {
-	mlx_hook(g->mlx_window, 2, 1L<<0, ft_key_input, g);
-  	// if (!mlx_hook(g->mlx_window, 2, 1L<<0, ft_key_input, g))
-	// {
-	// 	free(g->mlx_ptr);
-	// 	exit(1);
-	// }
-
+	if (!mlx_hook(g->mlx_window, 2, MASK, ft_key_input, g))
+		ft_mlx_quit(g, MLX_FAILURE);
 }

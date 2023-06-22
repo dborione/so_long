@@ -16,14 +16,14 @@ int	ft_init_mlx(t_game *g)
 {
 	g->mlx_ptr = mlx_init();
 	if (!g->mlx_ptr)
-		return (0);
+		ft_mlx_quit(g, MLX_FAILURE);
 	g->mlx_window = mlx_new_window(g->mlx_ptr,
 			((g->map_size_x - 1) * TILE_SIZE), ((g->map_size_y + 1)
 				* TILE_SIZE), "so_long");
 	if (!g->mlx_window)
 	{
 		free(g->mlx_ptr);
-		return (0);
+		ft_mlx_quit(g, MLX_FAILURE);
 	}
 	return (1);
 }

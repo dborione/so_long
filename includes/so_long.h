@@ -23,14 +23,13 @@
 // General
 # define WIN_WIDTH 500
 # define WIN_HEIGHT 500
-# define MLX_FAILURE 1
+# define MLX_FAILURE 6
 # define MLX_SUCCESS 0
 # define TILE_SIZE 64
-# define FALSE 0
-# define TRUE !(FALSE)
 # define FRAME_SPEED 30
 # define FIRST_LINE 0
 # define LAST_LINE 1
+# define MASK 1L<<0
 
 // Keys
 # define ESC_KEY 53
@@ -127,4 +126,6 @@ int		ft_player_anim(t_game *g);
 void	ft_put_img(t_game *g, void *ptr, int pos1, int pos2);
 void	ft_error_and_quit(int err_code);
 void	ft_check_ber(char *file);
+void	ft_mlx_quit(t_game *g, int exit_code);
+
 #endif
