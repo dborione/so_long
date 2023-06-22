@@ -51,13 +51,6 @@ int	ft_count_lines(t_parsing *p, char *file)
 	p->line = get_next_line(p->fd);
 	if (!p->line)
 		return (0);
-	while (*p->line == '\n')
-	{
-		free(p->line);
-		p->line = get_next_line(p->fd);
-		if (!p->line)
-			return (0);
-	}
 	while (p->line)
 	{
 		free(p->line);
@@ -81,13 +74,6 @@ int	ft_build_map_array(t_parsing *p, t_game *g, char *file)
 	p->line = get_next_line(p->fd);
 	if (!p->line)
 		return (0);
-	while (*p->line == '\n')
-	{
-		free(p->line);
-		p->line = get_next_line(p->fd);
-		if (!p->line)
-			return (0);
-	}
 	g->map_array[i] = p->line;
 	while (i < g->map_size_y)
 		g->map_array[++i] = get_next_line(p->fd);

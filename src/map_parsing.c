@@ -19,11 +19,6 @@ static	int	ft_first_and_last(t_parsing *p, int x)
 
 	i = 0;
 	p->line = get_next_line(p->fd);
-	while (p->line[i] == '\n')
-	{
-		free(p->line);
-		p->line = get_next_line(p->fd);
-	}
 	while (p->line[i] == '1')
 		i++;
 	if (x == FIRST_LINE && p->line[i] != '\n')
